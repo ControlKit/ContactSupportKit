@@ -33,28 +33,31 @@ public class ContactSupportViewConfig {
     public var messageText = "Message"
     public var messageTextColor: UIColor = UIColor(r: 84, g: 84, b: 84)
     
-    public var subjectTextFiledFont = UIFont.systemFont(ofSize: 18, weight: .regular)
+    public var subjectTextFieldFont = UIFont.systemFont(ofSize: 14, weight: .regular)
+    public var subjectTextFieldPlaceHolderFont = UIFont.systemFont(ofSize: 10, weight: .regular)
     public var subjectTextFieldPlaceHolder = "Please insert the subject"
     public var subjectTextFieldPlaceHolderColor = UIColor(r: 198, g: 198, b: 198)
+    
     public var subjectTextFieldBorderColor: UIColor = UIColor(r: 198, g: 198, b: 198)
     public var subjectTextFieldBorderWidth: CGFloat = 1.0
     public var subjectTextFieldRadius: CGFloat = 20.0
     public var subjectTextFieldTextColor: UIColor = .black
-    public var subjectTextFieldBackColor: UIColor = .clear
+    public var subjectTextFieldBackColor: UIColor = .blue
     
-    public var emailTextFiledFont = UIFont.systemFont(ofSize: 18, weight: .regular)
+    public var emailTextFieldPlaceHolderFont = UIFont.systemFont(ofSize: 10, weight: .regular)
+    public var emailTextFieldFont = UIFont.systemFont(ofSize: 14, weight: .regular)
     public var emailTextFieldPlaceHolder = "Please insert the email"
     public var emailTextFieldPlaceHolderColor = UIColor(r: 198, g: 198, b: 198)
     public var emailTextFieldBorderColor: UIColor = UIColor(r: 198, g: 198, b: 198)
     public var emailTextFieldBorderWidth: CGFloat = 1.0
     public var emailTextFieldRadius: CGFloat = 20.0
     public var emailTextFieldTextColor: UIColor = .black
-    public var emailTextFieldBackColor: UIColor = .clear
+    public var emailTextFieldBackColor: UIColor = .blue
     
     
     public var messagePlaceHolder = "Please insert your message in less than 600 character"
     public var messagePlaceHolderColor = UIColor(r: 198, g: 198, b: 198)
-    public var messagePlaceHolderFont = UIFont.systemFont(ofSize: 18, weight: .regular)
+    public var messagePlaceHolderFont = UIFont.systemFont(ofSize: 10, weight: .regular)
     
     public var messageTextFiledFont = UIFont.systemFont(ofSize: 18, weight: .regular)
     public var messageTextFieldBorderColor: UIColor = UIColor(r: 198, g: 198, b: 198)

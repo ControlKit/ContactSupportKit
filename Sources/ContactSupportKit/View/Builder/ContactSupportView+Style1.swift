@@ -42,15 +42,23 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITe
     }()
     lazy var subjectTextField: UITextField = {
         let textField = UITextField()
-        textField.font = config.subjectTextFiledFont
-        textField.placeholder = config.subjectTextFieldPlaceHolder
+        textField.font = config.subjectTextFieldFont
         textField.setCurvedView(
             cornerRadius: config.subjectTextFieldRadius,
             borderWidth: config.subjectTextFieldBorderWidth,
             borderColor: config.subjectTextFieldBackColor
         )
+        textField.borderStyle = .roundedRect
         textField.textAlignment = .left
         textField.backgroundColor = config.subjectTextFieldBackColor
+        let attributes = [
+            NSAttributedString.Key.foregroundColor: config.subjectTextFieldPlaceHolderColor,
+            NSAttributedString.Key.font : config.subjectTextFieldPlaceHolderFont
+        ]
+        textField.attributedPlaceholder = NSAttributedString(
+            string: config.subjectTextFieldPlaceHolder,
+            attributes:attributes
+        )
         return textField
     }()
     lazy var emailLabel: UILabel = {
@@ -64,8 +72,7 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITe
     }()
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
-        textField.font = config.emailTextFiledFont
-        textField.placeholder = config.emailTextFieldPlaceHolder
+        textField.font = config.emailTextFieldFont
         textField.setCurvedView(
             cornerRadius: config.emailTextFieldRadius,
             borderWidth: config.emailTextFieldBorderWidth,
@@ -73,6 +80,14 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITe
         )
         textField.textAlignment = .left
         textField.backgroundColor = config.emailTextFieldBackColor
+        let attributes = [
+            NSAttributedString.Key.foregroundColor: config.emailTextFieldPlaceHolderColor,
+            NSAttributedString.Key.font : config.emailTextFieldPlaceHolderFont
+        ]
+        textField.attributedPlaceholder = NSAttributedString(
+            string: config.emailTextFieldPlaceHolder,
+            attributes:attributes
+        )
         return textField
     }()
     lazy var messageLabel: UILabel = {
