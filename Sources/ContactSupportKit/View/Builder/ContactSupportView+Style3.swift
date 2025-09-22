@@ -308,7 +308,7 @@ public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol, UITe
             item: messageLabel,
             attribute: .top,
             relatedBy: .equal,
-            toItem: subjectTextField,
+            toItem: emailTextField,
             attribute: .bottom,
             multiplier: 1,
             constant: 33).isActive = true
