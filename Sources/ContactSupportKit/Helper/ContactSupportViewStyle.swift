@@ -18,16 +18,16 @@ public enum ContactSupportViewStyle {
         switch config.style {
         case .style1:
             return ContactSupportView_Style1(viewModel: viewModel,
-                                      config: config)
+                                             config: config)
         case .style2:
             return ContactSupportView_Style2(viewModel: viewModel,
-                                       config: config)
+                                             config: config)
         case .style3:
             return ContactSupportView_Style3(viewModel: viewModel,
-                                       config: config)
+                                             config: config)
         case .style4:
             return ContactSupportView_Style4(viewModel: viewModel,
-                                       config: config)
+                                             config: config)
         }
     }
     

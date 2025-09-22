@@ -153,7 +153,7 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITe
     }
     
     public func commonInit() {
-        containerView.fixInView(self)
+        contentView.fixInView(self)
     }
     
     public func setup() {
@@ -347,7 +347,7 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITe
             item: messageLabel,
             attribute: .top,
             relatedBy: .equal,
-            toItem: subjectTextField,
+            toItem: emailTextField,
             attribute: .bottom,
             multiplier: 1,
             constant: 32).isActive = true
@@ -501,8 +501,8 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITe
 public class ContactSupportViewConfig_Style1: ContactSupportViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
-        style = .style2
-        containerViewBackColor = .white
+        style = .style1
+        containerViewBackColor = UIColor(r: 245, g: 254, b: 255)
         contentViewBackColor = UIColor(r: 255, g: 199, b: 0)
         
         titleColor = UIColor(r: 30, g: 30, b: 30)
@@ -516,13 +516,17 @@ public class ContactSupportViewConfig_Style1: ContactSupportViewConfig {
         emailTextFieldBackColor = .clear
         messageTextFieldBackColor = .clear
         
-        subjectTextFieldBorderColor = UIColor(r: 167, g: 167, b: 167)
+        subjectTextFieldBorderColor = UIColor(r: 198, g: 198, b: 198)
         emailTextFieldBorderColor = UIColor(r: 167, g: 167, b: 167)
         messageTextFieldBorderColor = UIColor(r: 167, g: 167, b: 167)
         
-        subjectTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
+        subjectTextFieldPlaceHolderColor = UIColor(r: 198, g: 198, b: 198)
         emailTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
         messagePlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
+        
+        subjectTextFieldBorderWidth = 1.0
+        emailTextFieldBorderWidth = 1.0
+        messageTextFieldBorderWidth = 1.0
         
         subjectTextFieldRadius = 20.0
         emailTextFieldRadius = 20.0

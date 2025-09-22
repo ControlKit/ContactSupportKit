@@ -159,7 +159,7 @@ public class ContactSupportView_Style4: UIView, ContactSupportViewProtocol, UITe
     }
     
     public func commonInit() {
-        containerView.fixInView(self)
+        contentView.fixInView(self)
     }
     
     public func setup() {
