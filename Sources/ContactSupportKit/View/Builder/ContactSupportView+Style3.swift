@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol {
+public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol, UITextViewDelegate {
     var config: ContactSupportViewConfig
     var viewModel: ContactSupportViewModel
     
@@ -89,7 +89,19 @@ public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol {
             borderWidth: config.messageTextFieldBorderWidth,
             borderColor: config.messageTextFieldBackColor
         )
+        descriptionView.delegate = self
         return descriptionView
+    }()
+    
+    lazy var messagePlaceholderLabel: UILabel = {
+        let label = UILabel()
+        label.font = config.messagePlaceHolderFont
+        label.text = config.messagePlaceHolder
+        label.textColor = config.messagePlaceHolderColor
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.isUserInteractionEnabled = false
+        return label
     }()
     
     lazy var sendButton: UIButton = {
@@ -149,6 +161,7 @@ public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol {
         contentView.addSubview(emailTextField)
         contentView.addSubview(messageLabel)
         contentView.addSubview(messageView)
+        contentView.addSubview(messagePlaceholderLabel)
         contentView.addSubview(sendButton)
         contentView.addSubview(cancelButton)
         commonInit()
@@ -159,6 +172,7 @@ public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol {
         setEmailTextFieldConstraint()
         setMessageLabelConstraint()
         setMessageTextFieldConstraint()
+        setMessagePlaceholderConstraint()
         setSendButtonConstraint()
         setCancelButtonConstraint()
     }
@@ -338,6 +352,24 @@ public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol {
             multiplier: 1,
             constant: 200).isActive = true
     }
+    
+    public func setMessagePlaceholderConstraint() {
+        messagePlaceholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(
+            item: messagePlaceholderLabel,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: messageView,
+            attribute: .top,
+            multiplier: 1,
+            constant: 8).isActive = true
+        messagePlaceholderLabel.leadingAnchor.constraint(
+            equalTo: messageView.leadingAnchor,
+            constant: 8).isActive = true
+        messagePlaceholderLabel.trailingAnchor.constraint(
+            equalTo: messageView.trailingAnchor,
+            constant: -8).isActive = true
+    }
     public func setSendButtonConstraint() {
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
@@ -408,6 +440,23 @@ public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol {
             multiplier: 1,
             constant: 224).isActive = true
     }
+    
+    // MARK: - UITextViewDelegate
+    public func textViewDidChange(_ textView: UITextView) {
+        updatePlaceholderVisibility()
+    }
+    
+    public func textViewDidBeginEditing(_ textView: UITextView) {
+        updatePlaceholderVisibility()
+    }
+    
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        updatePlaceholderVisibility()
+    }
+    
+    private func updatePlaceholderVisibility() {
+        messagePlaceholderLabel.isHidden = !messageView.text.isEmpty
+    }
 }
 
 public class ContactSupportViewConfig_Style3: ContactSupportViewConfig {
@@ -435,7 +484,7 @@ public class ContactSupportViewConfig_Style3: ContactSupportViewConfig {
         
         subjectTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
         emailTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
-        messageTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
+        messagePlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
         
         sendButtonBackColor = UIColor(r: 163, g: 163, b: 163)
         cancelButtonBackColor = .clear

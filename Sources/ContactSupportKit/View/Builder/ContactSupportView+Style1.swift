@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol {
+public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITextViewDelegate {
     var config: ContactSupportViewConfig
     var viewModel: ContactSupportViewModel
     lazy var contentView: UIView = {
@@ -95,7 +95,18 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol {
             borderWidth: config.messageTextFieldBorderWidth,
             borderColor: config.messageTextFieldBackColor
         )
+        descriptionView.delegate = self
         return descriptionView
+    }()
+    lazy var messagePlaceholderLabel: UILabel = {
+        let label = UILabel()
+        label.font = config.messagePlaceHolderFont
+        label.text = config.messagePlaceHolder
+        label.textColor = config.messagePlaceHolderColor
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.isUserInteractionEnabled = false
+        return label
     }()
     
     lazy var sendButton: UIButton = {
@@ -156,6 +167,7 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol {
         containerView.addSubview(emailTextField)
         containerView.addSubview(messageLabel)
         containerView.addSubview(messageView)
+        containerView.addSubview(messagePlaceholderLabel)
         containerView.addSubview(sendButton)
         containerView.addSubview(cancelButton)
         commonInit()
@@ -167,6 +179,7 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol {
         setEmailTextFieldConstraint()
         setMessageLabelConstraint()
         setMessageTextFieldConstraint()
+        setMessagePlaceholderConstraint()
         setSendButtonConstraint()
         setCancelButtonConstraint()
     }
@@ -378,6 +391,24 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol {
             multiplier: 1,
             constant: 146).isActive = true
     }
+    
+    public func setMessagePlaceholderConstraint() {
+        messagePlaceholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(
+            item: messagePlaceholderLabel,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: messageView,
+            attribute: .top,
+            multiplier: 1,
+            constant: 8).isActive = true
+        messagePlaceholderLabel.leadingAnchor.constraint(
+            equalTo: messageView.leadingAnchor,
+            constant: 8).isActive = true
+        messagePlaceholderLabel.trailingAnchor.constraint(
+            equalTo: messageView.trailingAnchor,
+            constant: -8).isActive = true
+    }
     public func setSendButtonConstraint() {
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
@@ -448,6 +479,23 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol {
             multiplier: 1,
             constant: 224).isActive = true
     }
+    
+    // MARK: - UITextViewDelegate
+    public func textViewDidChange(_ textView: UITextView) {
+        updatePlaceholderVisibility()
+    }
+    
+    public func textViewDidBeginEditing(_ textView: UITextView) {
+        updatePlaceholderVisibility()
+    }
+    
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        updatePlaceholderVisibility()
+    }
+    
+    private func updatePlaceholderVisibility() {
+        messagePlaceholderLabel.isHidden = !messageView.text.isEmpty
+    }
 }
 
 public class ContactSupportViewConfig_Style1: ContactSupportViewConfig {
@@ -474,7 +522,7 @@ public class ContactSupportViewConfig_Style1: ContactSupportViewConfig {
         
         subjectTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
         emailTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
-        messageTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
+        messagePlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
         
         subjectTextFieldRadius = 20.0
         emailTextFieldRadius = 20.0

@@ -51,9 +51,12 @@ public class ContactSupportViewConfig {
     public var emailTextFieldTextColor: UIColor = .black
     public var emailTextFieldBackColor: UIColor = .clear
     
+    
+    public var messagePlaceHolder = "Please insert your message in less than 600 character"
+    public var messagePlaceHolderColor = UIColor(r: 198, g: 198, b: 198)
+    public var messagePlaceHolderFont = UIFont.systemFont(ofSize: 18, weight: .regular)
+    
     public var messageTextFiledFont = UIFont.systemFont(ofSize: 18, weight: .regular)
-    public var messageTextFieldPlaceHolder = "Please insert your message in less than 600 character"
-    public var messageTextFieldPlaceHolderColor = UIColor(r: 198, g: 198, b: 198)
     public var messageTextFieldBorderColor: UIColor = UIColor(r: 198, g: 198, b: 198)
     public var messageTextFieldBorderWidth: CGFloat = 1.0
     public var messageTextFieldRadius: CGFloat = 20.0
