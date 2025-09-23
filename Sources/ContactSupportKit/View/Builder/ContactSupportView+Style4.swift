@@ -551,16 +551,16 @@ public class ContactSupportView_Style4: UIView, ContactSupportViewProtocol, UITe
 public class ContactSupportViewConfig_Style4: ContactSupportViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
-        style = .style2
-        containerViewBackColor = .clear
+        style = .style4
+        containerViewBackColor = .white
         contentViewBackColor = UIColor(r: 133, g: 176, b: 227)
         
-        titleColor = .white
+        titleColor = UIColor(r: 83, g: 110, b: 141)
         titleFont = UIFont.systemFont(ofSize: 24, weight: .bold)
         
-        subjectTextColor = .white
-        emailTextColor = .white
-        messageTextColor = .white
+        subjectTextColor = UIColor(r: 83, g: 110, b: 141)
+        emailTextColor = UIColor(r: 83, g: 110, b: 141)
+        messageTextColor = UIColor(r: 83, g: 110, b: 141)
         
         subjectTextFieldBackColor = .clear
         emailTextFieldBackColor = .clear

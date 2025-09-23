@@ -486,11 +486,11 @@ public class ContactSupportViewConfig_Style2: ContactSupportViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .style2
-        titleColor = UIColor(r: 30, g: 30, b: 30)
+        titleColor = .white
         
-        subjectTextColor = UIColor(r: 84, g: 84, b: 84)
-        emailTextColor = UIColor(r: 84, g: 84, b: 84)
-        messageTextColor = UIColor(r: 84, g: 84, b: 84)
+        subjectTextColor = .white
+        emailTextColor = .white
+        messageTextColor = .white
         
         subjectTextFieldBackColor = UIColor(r: 48, g: 48, b: 48)
         emailTextFieldBackColor = UIColor(r: 48, g: 48, b: 48)
