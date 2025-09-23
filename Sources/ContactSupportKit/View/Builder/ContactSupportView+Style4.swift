@@ -59,6 +59,10 @@ public class ContactSupportView_Style4: UIView, ContactSupportViewProtocol, UITe
             string: config.subjectTextFieldPlaceHolder,
             attributes:attributes
         )
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
+        textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
+        textField.rightViewMode = .always
+        textField.leftViewMode = .always
         return textField
     }()
     lazy var emailLabel: UILabel = {
@@ -88,6 +92,10 @@ public class ContactSupportView_Style4: UIView, ContactSupportViewProtocol, UITe
             string: config.emailTextFieldPlaceHolder,
             attributes:attributes
         )
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
+        textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
+        textField.rightViewMode = .always
+        textField.leftViewMode = .always
         return textField
     }()
     lazy var messageLabel: UILabel = {
@@ -111,6 +119,7 @@ public class ContactSupportView_Style4: UIView, ContactSupportViewProtocol, UITe
             borderColor: config.messageTextFieldBorderColor
         )
         descriptionView.delegate = self
+        descriptionView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         return descriptionView
     }()
     
