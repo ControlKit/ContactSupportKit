@@ -483,13 +483,13 @@ public class ContactSupportViewConfig_Style2: ContactSupportViewConfig {
         emailTextColor = UIColor(r: 84, g: 84, b: 84)
         messageTextColor = UIColor(r: 84, g: 84, b: 84)
         
-        subjectTextFieldBackColor = .clear
-        emailTextFieldBackColor = .clear
-        messageTextFieldBackColor = .clear
+        subjectTextFieldBackColor = UIColor(r: 48, g: 48, b: 48)
+        emailTextFieldBackColor = UIColor(r: 48, g: 48, b: 48)
+        messageTextFieldBackColor = UIColor(r: 48, g: 48, b: 48)
         
-        subjectTextFieldBorderColor = UIColor(r: 167, g: 167, b: 167)
-        emailTextFieldBorderColor = UIColor(r: 167, g: 167, b: 167)
-        messageTextFieldBorderColor = UIColor(r: 167, g: 167, b: 167)
+        subjectTextFieldBorderColor = .clear
+        emailTextFieldBorderColor = .clear
+        messageTextFieldBorderColor = .clear
         
         subjectTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
         emailTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
@@ -498,6 +498,10 @@ public class ContactSupportViewConfig_Style2: ContactSupportViewConfig {
         subjectTextFieldRadius = 20.0
         emailTextFieldRadius = 20.0
         messageTextFieldRadius = 20.0
+        
+        subjectTextFieldBorderWidth = 0
+        emailTextFieldBorderWidth = 0
+        messageTextFieldBorderWidth = 0
         
         sendButtonBackColor = UIColor(r: 163, g: 163, b: 163)
         cancelButtonBackColor = .clear

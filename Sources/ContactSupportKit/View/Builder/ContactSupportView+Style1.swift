@@ -538,9 +538,9 @@ public class ContactSupportViewConfig_Style1: ContactSupportViewConfig {
         emailTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
         messagePlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
         
-        subjectTextFieldBorderWidth = 1.0
-        emailTextFieldBorderWidth = 1.0
-        messageTextFieldBorderWidth = 1.0
+        subjectTextFieldBorderWidth = 0.5
+        emailTextFieldBorderWidth = 0.5
+        messageTextFieldBorderWidth = 0.5
         
         subjectTextFieldRadius = 20.0
         emailTextFieldRadius = 20.0
