@@ -426,13 +426,13 @@ public class ContactSupportView_Style4: UIView, ContactSupportViewProtocol, UITe
             toItem: messageView,
             attribute: .top,
             multiplier: 1,
-            constant: 8).isActive = true
+            constant: 16).isActive = true
         messagePlaceholderLabel.leadingAnchor.constraint(
             equalTo: messageView.leadingAnchor,
-            constant: 8).isActive = true
+            constant: 16).isActive = true
         messagePlaceholderLabel.trailingAnchor.constraint(
             equalTo: messageView.trailingAnchor,
-            constant: -8).isActive = true
+            constant: -16).isActive = true
     }
     public func setButtonsViewConstraint() {
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
