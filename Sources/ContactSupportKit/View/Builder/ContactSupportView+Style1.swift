@@ -54,10 +54,9 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITe
             attributes:attributes
         )
         textField.setCurvedView(
-            cornerRadius: self.config.subjectTextFieldRadius,
-            borderWidth: self.config.subjectTextFieldBorderWidth,
-            borderColor: self.config.subjectTextFieldBorderColor,
-            masksToBounds: false
+            cornerRadius: config.subjectTextFieldRadius,
+            borderWidth: config.subjectTextFieldBorderWidth,
+            borderColor: config.subjectTextFieldBorderColor
         )
         return textField
     }()
