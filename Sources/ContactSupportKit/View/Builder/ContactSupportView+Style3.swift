@@ -42,7 +42,6 @@ public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol, UITe
             borderWidth: config.subjectTextFieldBorderWidth,
             borderColor: config.subjectTextFieldBorderColor
         )
-        textField.borderStyle = .roundedRect
         textField.textAlignment = .left
         textField.backgroundColor = config.subjectTextFieldBackColor
         let attributes = [
@@ -487,36 +486,41 @@ public class ContactSupportViewConfig_Style3: ContactSupportViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .style3
-        contentViewBackColor = UIColor(r: 49, g: 49, b: 49)
-        titleColor = .white
+        titleColor = UIColor(r: 30, g: 30, b: 30)
         
-        subjectTextColor = UIColor(r: 235, g: 235, b: 235)
-        emailTextColor = UIColor(r: 235, g: 235, b: 235)
-        messageTextColor = UIColor(r: 235, g: 235, b: 235)
+        subjectTextColor = UIColor(r: 84, g: 84, b: 84)
+        emailTextColor = UIColor(r: 84, g: 84, b: 84)
+        messageTextColor = UIColor(r: 84, g: 84, b: 84)
         
-        subjectTextFieldBackColor = UIColor(r: 48, g: 48, b: 48)
-        emailTextFieldBackColor = UIColor(r: 48, g: 48, b: 48)
-        messageTextFieldBackColor = UIColor(r: 48, g: 48, b: 48)
+        subjectTextFieldBackColor = .clear
+        emailTextFieldBackColor = .clear
+        messageTextFieldBackColor = .clear
         
-        subjectTextFieldRadius = 20.0
-        emailTextFieldRadius = 20.0
-        messageTextFieldRadius = 20.0
-        
-        subjectTextFieldBorderColor = UIColor(r: 48, g: 48, b: 48)
-        emailTextFieldBorderColor = UIColor(r: 48, g: 48, b: 48)
-        messageTextFieldBorderColor = UIColor(r: 48, g: 48, b: 48)
+        subjectTextFieldBorderColor = UIColor(r: 198, g: 198, b: 198)
+        emailTextFieldBorderColor = UIColor(r: 198, g: 198, b: 198)
+        messageTextFieldBorderColor = UIColor(r: 198, g: 198, b: 198)
         
         subjectTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
         emailTextFieldPlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
         messagePlaceHolderColor = UIColor(r: 167, g: 167, b: 167)
         
+        subjectTextFieldRadius = 20.0
+        emailTextFieldRadius = 20.0
+        messageTextFieldRadius = 20.0
+        
+        subjectTextFieldBorderWidth = 0.5
+        emailTextFieldBorderWidth = 0.5
+        messageTextFieldBorderWidth = 0.5
+        
         sendButtonBackColor = UIColor(r: 163, g: 163, b: 163)
         cancelButtonBackColor = .clear
-        cancelButtonTitleColor = UIColor(r: 235, g: 235, b: 235)
+        cancelButtonTitleColor = UIColor(r: 163, g: 163, b: 163)
         cancelButtonBorderColor = UIColor(r: 163, g: 163, b: 163)
         sendButtonBorderColor = .clear
         sendButtonTitleColor = .black
         sendButtonRadius = 20.0
         cancelButtonRadius = 20.0
+        containerViewBackColor = .white
+        contentViewBackColor = .white
     }
 }

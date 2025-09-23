@@ -42,7 +42,6 @@ public class ContactSupportView_Style2: UIView, ContactSupportViewProtocol, UITe
             borderWidth: config.subjectTextFieldBorderWidth,
             borderColor: config.subjectTextFieldBorderColor
         )
-        textField.borderStyle = .roundedRect
         textField.textAlignment = .left
         textField.backgroundColor = config.subjectTextFieldBackColor
         let attributes = [
