@@ -512,14 +512,16 @@ public class ContactSupportViewConfig_Style2: ContactSupportViewConfig {
         emailTextFieldBorderWidth = 0
         messageTextFieldBorderWidth = 0
         
-        sendButtonBackColor = UIColor(r: 163, g: 163, b: 163)
         cancelButtonBackColor = .clear
-        cancelButtonTitleColor = UIColor(r: 163, g: 163, b: 163)
+        cancelButtonTitleColor = .white
         cancelButtonBorderColor = UIColor(r: 163, g: 163, b: 163)
+        cancelButtonRadius = 20.0
+        
+        sendButtonBackColor = UIColor(r: 163, g: 163, b: 163)
         sendButtonBorderColor = .clear
         sendButtonTitleColor = .black
         sendButtonRadius = 20.0
-        cancelButtonRadius = 20.0
-        containerViewBackColor = .white
+        
+        containerViewBackColor = .clear
     }
 }
