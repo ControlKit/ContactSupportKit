@@ -43,12 +43,6 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITe
     lazy var subjectTextField: UITextField = {
         let textField = UITextField()
         textField.font = config.subjectTextFieldFont
-        textField.setCurvedView(
-            cornerRadius: config.subjectTextFieldRadius,
-            borderWidth: config.subjectTextFieldBorderWidth,
-            borderColor: config.subjectTextFieldBackColor
-        )
-        textField.borderStyle = .roundedRect
         textField.textAlignment = .left
         textField.backgroundColor = config.subjectTextFieldBackColor
         let attributes = [
@@ -58,6 +52,12 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITe
         textField.attributedPlaceholder = NSAttributedString(
             string: config.subjectTextFieldPlaceHolder,
             attributes:attributes
+        )
+        textField.setCurvedView(
+            cornerRadius: self.config.subjectTextFieldRadius,
+            borderWidth: self.config.subjectTextFieldBorderWidth,
+            borderColor: self.config.subjectTextFieldBorderColor,
+            masksToBounds: false
         )
         return textField
     }()
@@ -76,7 +76,7 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITe
         textField.setCurvedView(
             cornerRadius: config.emailTextFieldRadius,
             borderWidth: config.emailTextFieldBorderWidth,
-            borderColor: config.emailTextFieldBackColor
+            borderColor: config.emailTextFieldBorderColor
         )
         textField.textAlignment = .left
         textField.backgroundColor = config.emailTextFieldBackColor
@@ -108,7 +108,7 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITe
         descriptionView.setCurvedView(
             cornerRadius: config.messageTextFieldRadius,
             borderWidth: config.messageTextFieldBorderWidth,
-            borderColor: config.messageTextFieldBackColor
+            borderColor: config.messageTextFieldBorderColor
         )
         descriptionView.delegate = self
         return descriptionView

@@ -40,7 +40,7 @@ public class ContactSupportView_Style2: UIView, ContactSupportViewProtocol, UITe
         textField.setCurvedView(
             cornerRadius: config.subjectTextFieldRadius,
             borderWidth: config.subjectTextFieldBorderWidth,
-            borderColor: config.subjectTextFieldBackColor
+            borderColor: config.subjectTextFieldBorderColor
         )
         textField.borderStyle = .roundedRect
         textField.textAlignment = .left
@@ -70,7 +70,7 @@ public class ContactSupportView_Style2: UIView, ContactSupportViewProtocol, UITe
         textField.setCurvedView(
             cornerRadius: config.emailTextFieldRadius,
             borderWidth: config.emailTextFieldBorderWidth,
-            borderColor: config.emailTextFieldBackColor
+            borderColor: config.emailTextFieldBorderColor
         )
         textField.textAlignment = .left
         textField.backgroundColor = config.emailTextFieldBackColor
@@ -102,7 +102,7 @@ public class ContactSupportView_Style2: UIView, ContactSupportViewProtocol, UITe
         descriptionView.setCurvedView(
             cornerRadius: config.messageTextFieldRadius,
             borderWidth: config.messageTextFieldBorderWidth,
-            borderColor: config.messageTextFieldBackColor
+            borderColor: config.messageTextFieldBorderColor
         )
         descriptionView.delegate = self
         return descriptionView
