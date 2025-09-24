@@ -4,6 +4,7 @@ import Foundation
 import UIKit
 import Combine
 
+public let contactSupportKit_Version: String = "1.0.0"
 public class ContactSupportKit {
     public init() {
     }
@@ -14,13 +15,13 @@ public class ContactSupportKit {
                           config: ContactSupportServiceConfig) async {
         Task {
             let viewModel = DefaultContactSupportViewModel(serviceConfig: config)
-            let ContactSupportVC = ContactSupportViewController(
+            let contactSupportVC = ContactSupportViewController(
                 viewModel: viewModel,
                 config: config
             )
-            ContactSupportVC.modalPresentationStyle = modalPresentationStyle
+            contactSupportVC.modalPresentationStyle = modalPresentationStyle
             DispatchQueue.main.async {
-                root.present(ContactSupportVC, animated: true)
+                root.present(contactSupportVC, animated: true)
             }
         }
     }

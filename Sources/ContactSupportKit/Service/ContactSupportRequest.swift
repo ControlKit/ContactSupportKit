@@ -7,19 +7,26 @@
 
 import Foundation
 public struct ContactSupportRequest {
-    public var appId: String = Bundle.main.bundleIdentifier ?? String()
-    public var route: String
+    public var appId: String
+    public var route: String = "https://tauri.ir/api/contacts"
     public var deviceUUID: String = UUID().uuidString
-    public var sdkVersion: String = "1.0.0"
+    public var sdkVersion: String = contactSupportKit_Version
+    public var version: String = "1"
     
-    var dictionary: [String: String] {
-        return ["x-app-id": appId,
-                "x-sdk-version": sdkVersion,
-                "x-version": "1",
-                "x-device-uuid": deviceUUID]
+    public var email: String
+    public var subject: String
+    public var message: String
+    
+    var params: [String: String] {
+        return ["email": email,
+                "subject": subject,
+                "message": message]
     }
     
-    var nsDictionary: NSDictionary {
-        return dictionary as NSDictionary
+    var header: [String: String] {
+        return ["x-app-id": appId,
+                "x-sdk-version": sdkVersion,
+                "x-version": version,
+                "x-device-uuid": deviceUUID]
     }
 }

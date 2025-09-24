@@ -18,18 +18,18 @@ public class ContactSupportService: ContactSupportServiceProtocol {
                 return ContactSupportResponse()
             }
             var req = URLRequest(url: url)
-            req.allHTTPHeaderFields = request.dictionary
+            req.allHTTPHeaderFields = request.header
             req.setValue(
                 "application/json",
                 forHTTPHeaderField: "Content-Type"
             )
+            req.httpMethod = "POST"
+            req.httpBody = try JSONEncoder().encode(request.params)
+            
             let (data, res) = try await URLSession.shared.data(for: req)
-            if (res as? HTTPURLResponse)?.statusCode == 204 {
-                return nil
-            }
-            if let ContactSupportResponse = try? JSONDecoder().decode(ContactSupportResponse.self, from: data) {
-                print(ContactSupportResponse)
-                return ContactSupportResponse
+            if let response = try? JSONDecoder().decode(ContactSupportResponse.self, from: data) {
+                print(response)
+                return response
             } else {
                 print("Invalid Response")
                 return nil

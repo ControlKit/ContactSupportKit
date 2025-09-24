@@ -1,16 +1,15 @@
 //
 //  ContactSupportViewController.swift
-//  
+//
 //
 //  Created by Maziar Saadatfar on 10/21/23.
 //
 
 import UIKit
 
-class ContactSupportViewController: UIViewController {
+class ContactSupportViewController: UIViewController, ContactSupportViewDelegate {
     var viewModel: ContactSupportViewModel
     let config: ContactSupportServiceConfig
-
     init(viewModel: ContactSupportViewModel, config: ContactSupportServiceConfig) {
         self.viewModel = viewModel
         self.config = config
@@ -23,12 +22,17 @@ class ContactSupportViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let ContactSupportView = ContactSupportViewStyle.make(viewModel: viewModel,
-                                                    config: config.viewConfig)
-        view.addSubview(ContactSupportView)
-        ContactSupportView.fixInView(view)
-        Task {
-            viewModel.response = try await viewModel.contactSupportService.getContactSupport(request: viewModel.request)
-        }
+        let contactSupportView = ContactSupportViewStyle.make(viewModel: viewModel,
+                                                              config: config.viewConfig)
+        contactSupportView.delegate = self
+        view.addSubview(contactSupportView)
+        contactSupportView.fixInView(view)
+    }
+    func send(request: ContactSupportRequest) {
+        
+    }
+    
+    func cancel() {
+        
     }
 }

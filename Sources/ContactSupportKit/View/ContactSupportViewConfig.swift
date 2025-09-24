@@ -8,11 +8,7 @@
 import Foundation
 import UIKit
 public class ContactSupportViewConfig {
-    public init(lang: String) {
-        self.lang = lang
-    }
-    
-    public let lang: String
+    public init() {}
     public var style: ContactSupportViewStyle = .style1
     public var contentViewBackColor: UIColor = UIColor(r: 25, g: 29, b: 32, a: 1.0)
     public var containerViewBackColor: UIColor = UIColor(r: 25, g: 29, b: 32, a: 1.0)

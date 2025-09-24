@@ -10,6 +10,7 @@ import UIKit
 public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol, UITextViewDelegate {
     var config: ContactSupportViewConfig
     var viewModel: ContactSupportViewModel
+    public weak var delegate: ContactSupportViewDelegate?
     
     lazy var contentView: UIView = {
         let contentView = UIView()
@@ -135,7 +136,7 @@ public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol, UITe
         button.setCurvedView(cornerRadius: config.sendButtonRadius,
                              borderWidth: config.sendButtonBorderWidth,
                              borderColor: config.sendButtonBorderColor)
-//        button.addTarget(self, action: #selector(openLink), for: .touchUpInside)
+        button.addTarget(self, action: #selector(sendButtonPressed), for: .touchUpInside)
         button.titleLabel?.font = config.sendButtonFont
         button.setTitleColor(config.sendButtonTitleColor, for: .normal)
         return button
@@ -149,7 +150,7 @@ public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol, UITe
         button.setCurvedView(cornerRadius: config.cancelButtonRadius,
                              borderWidth: config.cancelButtonBorderWidth,
                              borderColor: config.cancelButtonBorderColor)
-//        button.addTarget(self, action: #selector(openLink), for: .touchUpInside)
+        button.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
         button.titleLabel?.font = config.cancelButtonFont
         button.setTitleColor(config.cancelButtonTitleColor, for: .normal)
         return button
@@ -480,11 +481,25 @@ public class ContactSupportView_Style3: UIView, ContactSupportViewProtocol, UITe
     private func updatePlaceholderVisibility() {
         messagePlaceholderLabel.isHidden = !messageView.text.isEmpty
     }
+    @objc
+    func sendButtonPressed() {
+        var request = ContactSupportRequest(
+            appId: viewModel.serviceConfig.appId,
+            email: emailTextField.text ?? "",
+            subject: subjectTextField.text ?? "",
+            message: messageView.text ?? ""
+        )
+        delegate?.send(request: request)
+    }
+    @objc
+    func cancelButtonPressed() {
+        delegate?.cancel()
+    }
 }
 
 public class ContactSupportViewConfig_Style3: ContactSupportViewConfig {
-    public override init(lang: String) {
-        super.init(lang: lang)
+    public override init() {
+        super.init()
         style = .style3
         titleColor = UIColor(r: 30, g: 30, b: 30)
         

@@ -7,7 +7,12 @@
 
 import Foundation
 import UIKit
+public protocol ContactSupportViewDelegate: AnyObject {
+    func send(request: ContactSupportRequest)
+    func cancel()
+}
 public protocol ContactSupportViewProtocol: UIView {
+    var delegate: ContactSupportViewDelegate? { get set }
 }
 
 public extension ContactSupportViewProtocol {

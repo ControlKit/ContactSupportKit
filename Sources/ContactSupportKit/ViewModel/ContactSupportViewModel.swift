@@ -11,7 +11,6 @@ public protocol ContactSupportViewModel {
     var contactSupportService: ContactSupportServiceProtocol { get set }
     var serviceConfig: ContactSupportServiceConfig { get set }
     var response: ContactSupportResponse? { get set }
-    var request: ContactSupportRequest { get }
 }
 
 public final class DefaultContactSupportViewModel: ContactSupportViewModel, ContactSupportable {
@@ -24,11 +23,5 @@ public final class DefaultContactSupportViewModel: ContactSupportViewModel, Cont
     ) {
         self.contactSupportService = contactSupportService
         self.serviceConfig = serviceConfig
-    }
-    
-    public var request: ContactSupportRequest {
-        return ContactSupportRequest(appId: serviceConfig.appId,
-                                   route: serviceConfig.route,
-                                   sdkVersion: serviceConfig.sdkVersion)
     }
 }

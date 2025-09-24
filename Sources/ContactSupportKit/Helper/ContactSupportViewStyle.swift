@@ -31,16 +31,16 @@ public enum ContactSupportViewStyle {
         }
     }
     
-    public static func getViewConfigWithStyle(style: ContactSupportViewStyle, lang: String) -> ContactSupportViewConfig {
+    public static func getViewConfigWithStyle(style: ContactSupportViewStyle) -> ContactSupportViewConfig {
         switch style {
         case .style1:
-            ContactSupportViewConfig_Style1(lang: lang)
+            ContactSupportViewConfig_Style1()
         case .style2:
-            ContactSupportViewConfig_Style2(lang: lang)
+            ContactSupportViewConfig_Style2()
         case .style3:
-            ContactSupportViewConfig_Style3(lang: lang)
+            ContactSupportViewConfig_Style3()
         case .style4:
-            ContactSupportViewConfig_Style4(lang: lang)
+            ContactSupportViewConfig_Style4()
         }
     }
 }
