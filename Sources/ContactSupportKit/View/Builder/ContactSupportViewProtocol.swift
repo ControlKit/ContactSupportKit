@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 public protocol ContactSupportViewDelegate: AnyObject {
-    func send(request: ContactSupportRequest)
+    func send(request: ContactSupportViewRequest)
     func cancel()
 }
 public protocol ContactSupportViewProtocol: UIView {

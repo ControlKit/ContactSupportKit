@@ -28,11 +28,17 @@ class ContactSupportViewController: UIViewController, ContactSupportViewDelegate
         view.addSubview(contactSupportView)
         contactSupportView.fixInView(view)
     }
-    func send(request: ContactSupportRequest) {
-        
+    
+    func send(request: ContactSupportViewRequest) {
+        Task {
+            let _ = try await viewModel.sendContactSupport(viewRequest: request)
+            DispatchQueue.main.async {
+                self.dismiss(animated: true)
+            }
+        }
     }
     
     func cancel() {
-        
+        dismiss(animated: true)
     }
 }

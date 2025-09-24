@@ -9,11 +9,15 @@ import Foundation
 
 public protocol ContactSupportable: AnyObject {
     var contactSupportService: ContactSupportServiceProtocol { get set }
-    func getContactSupport(request: ContactSupportRequest) async throws -> ContactSupportResponse?
+    func sendContactSupport(viewRequest: ContactSupportViewRequest) async throws -> ContactSupportResponse?
 }
 
-extension ContactSupportable {
-    public func getContactSupport(request: ContactSupportRequest) async throws -> ContactSupportResponse? {
+extension ContactSupportable where Self: ContactSupportViewModel {
+    public func sendContactSupport(viewRequest: ContactSupportViewRequest) async throws -> ContactSupportResponse? {
+        let request = ContactSupportRequest(
+            appId: serviceConfig.appId,
+            viewReq: viewRequest
+        )
         return try await contactSupportService.getContactSupport(request: request)
     }
 }

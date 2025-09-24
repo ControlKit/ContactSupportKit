@@ -550,8 +550,7 @@ public class ContactSupportView_Style4: UIView, ContactSupportViewProtocol, UITe
     }
     @objc
     func sendButtonPressed() {
-        var request = ContactSupportRequest(
-            appId: viewModel.serviceConfig.appId,
+        let request = ContactSupportViewRequest(
             email: emailTextField.text ?? "",
             subject: subjectTextField.text ?? "",
             message: messageView.text ?? ""

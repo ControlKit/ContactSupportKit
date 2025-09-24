@@ -17,6 +17,16 @@ public struct ContactSupportRequest {
     public var subject: String
     public var message: String
     
+    init(
+        appId: String,
+        viewReq: ContactSupportViewRequest
+    ) {
+        self.appId = appId
+        self.email = viewReq.email
+        self.subject = viewReq.subject
+        self.message = viewReq.message
+    }
+    
     var params: [String: String] {
         return ["email": email,
                 "subject": subject,
@@ -29,4 +39,10 @@ public struct ContactSupportRequest {
                 "x-version": version,
                 "x-device-uuid": deviceUUID]
     }
+}
+
+public struct ContactSupportViewRequest {
+    public var email: String
+    public var subject: String
+    public var message: String
 }

@@ -7,13 +7,13 @@
 import Foundation
 import UIKit
 
-public protocol ContactSupportViewModel {
+public protocol ContactSupportViewModel: ContactSupportable {
     var contactSupportService: ContactSupportServiceProtocol { get set }
     var serviceConfig: ContactSupportServiceConfig { get set }
     var response: ContactSupportResponse? { get set }
 }
 
-public final class DefaultContactSupportViewModel: ContactSupportViewModel, ContactSupportable {
+public final class DefaultContactSupportViewModel: ContactSupportViewModel {
     public var contactSupportService: ContactSupportServiceProtocol
     public var serviceConfig: ContactSupportServiceConfig
     public var response: ContactSupportResponse?
