@@ -18,7 +18,7 @@ public class ContactSupportService: ContactSupportServiceProtocol {
                 return ContactSupportResponse()
             }
             var req = URLRequest(url: url)
-            req.allHTTPHeaderFields = request.header
+            req.allHTTPHeaderFields = request.headers
             req.setValue(
                 "application/json",
                 forHTTPHeaderField: "Content-Type"

@@ -11,7 +11,7 @@ public struct ContactSupportRequest {
     public var route: String = "https://tauri.ir/api/contacts"
     public var deviceUUID: String = UUID().uuidString
     public var sdkVersion: String = contactSupportKit_Version
-    public var version: String = "1"
+    public var applicationVersion: String = Bundle.main.releaseVersionNumber ?? String()
     
     public var email: String
     public var subject: String
@@ -33,10 +33,10 @@ public struct ContactSupportRequest {
                 "message": message]
     }
     
-    var header: [String: String] {
+    var headers: [String: String] {
         return ["x-app-id": appId,
                 "x-sdk-version": sdkVersion,
-                "x-version": version,
+                "x-version": applicationVersion,
                 "x-device-uuid": deviceUUID]
     }
 }
