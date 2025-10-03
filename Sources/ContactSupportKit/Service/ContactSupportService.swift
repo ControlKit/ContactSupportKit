@@ -27,15 +27,20 @@ public class ContactSupportService: ContactSupportServiceProtocol {
             req.httpBody = try JSONEncoder().encode(request.params)
             
             let (data, res) = try await URLSession.shared.data(for: req)
+            if (res as? HTTPURLResponse)?.statusCode == 204 {
+                print("Contact Support Response --> 204")
+                return nil
+            }
             if let response = try? JSONDecoder().decode(ContactSupportResponse.self, from: data) {
+                print("Contact Support Response --> 200")
                 print(response)
                 return response
             } else {
-                print("Invalid Response")
+                print("Contact Support Response --> Decode Error")
                 return nil
             }
         } catch {
-            print("Failed to Send POST Request \(error)")
+            print("Failed to Send POST Contact Support Request \(error)")
             return nil
         }
     }
