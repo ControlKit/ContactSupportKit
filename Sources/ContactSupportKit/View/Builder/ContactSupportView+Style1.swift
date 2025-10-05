@@ -415,7 +415,6 @@ public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITe
             multiplier: 1,
             constant: 146).isActive = true
     }
-    
     public func setMessagePlaceholderConstraint() {
         messagePlaceholderLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
