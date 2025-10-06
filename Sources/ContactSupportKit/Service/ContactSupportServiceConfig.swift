@@ -15,7 +15,7 @@ public struct ContactSupportServiceConfig {
         self.version = version
     }
     public var appId: String
-    public var version: String = "1"
+    public var version: String = Bundle.main.releaseVersionNumber ?? String()
     public var sdkVersion: String = contactSupportKit_Version
     public var viewConfig: ContactSupportViewConfig
 }
