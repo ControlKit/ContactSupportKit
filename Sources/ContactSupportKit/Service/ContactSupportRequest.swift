@@ -6,10 +6,14 @@
 //
 
 import Foundation
-public struct ContactSupportRequest {
+import ControlKitBase
+public struct ContactSupportRequest: GenericRequest {
+    public var itemId: String?
+    public var extraParameter: String?
     public var appId: String
-    public var route: String = "https://tauri.ir/api/contacts"
-    public var deviceUUID: String = UUID().uuidString
+    public var httpMethod: HTTPMethod = .post
+    public var route: ControlKitItem = .contact_support
+    public var deviceUUID: String = CKDeviceUUID
     public var sdkVersion: String = contactSupportKit_Version
     public var applicationVersion: String = Bundle.main.releaseVersionNumber ?? String()
     
@@ -27,13 +31,13 @@ public struct ContactSupportRequest {
         self.message = viewReq.message
     }
     
-    var params: [String: String] {
+    public var body: [String: String] {
         return ["email": email,
                 "subject": subject,
                 "message": message]
     }
     
-    var headers: [String: String] {
+    public var headers: [String: String] {
         return ["x-app-id": appId,
                 "x-sdk-version": sdkVersion,
                 "x-version": applicationVersion,

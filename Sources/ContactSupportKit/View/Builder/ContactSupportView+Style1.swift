@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import ControlKitBase
 
 public class ContactSupportView_Style1: UIView, ContactSupportViewProtocol, UITextViewDelegate {
     var config: ContactSupportViewConfig
@@ -577,21 +578,5 @@ public class ContactSupportViewConfig_Style1: ContactSupportViewConfig {
         sendButtonTitleColor = .black
         sendButtonRadius = 20.0
         cancelButtonRadius = 20.0
-    }
-}
-
-class ImageHelper {
-    static var resolvedBundle: Bundle {
-#if SWIFT_PACKAGE
-        return Bundle.module
-#else
-        return Bundle(for: self)
-#endif
-    }
-    
-    static func image(_ name: String) -> UIImage? {
-        return UIImage(named: name,
-                       in: resolvedBundle,
-                       compatibleWith: nil)
     }
 }

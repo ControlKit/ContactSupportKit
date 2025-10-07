@@ -14,9 +14,16 @@ let package = Package(
             targets: ["ContactSupportKit"]
         ),
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/ControlKit/ControlKitBase.git",
+            branch: "main"
+        )
+    ],
     targets: [
         .target(
             name: "ContactSupportKit",
+            dependencies: ["ControlKitBase"],
             resources: [.process("Resources")]
         ),
         .testTarget(
