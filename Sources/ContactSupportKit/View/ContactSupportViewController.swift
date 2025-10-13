@@ -50,11 +50,11 @@ class ContactSupportViewController: UIViewController, ContactSupportViewDelegate
     }
     
     private func showSuccessAlert() {
-        let alertView = AlertView()
+        let alertView = AlertView(config: config.viewConfig)
         alertView.configure(
             type: .success,
-            title: "Success!",
-            message: "Your message has been sent successfully. We'll get back to you soon.",
+            title: config.viewConfig.successTitle,
+            message: config.viewConfig.successMessage,
             onDismiss: { [weak self] in
                 self?.dismiss(animated: true) {
                     self?.delegate?.success()
@@ -65,11 +65,11 @@ class ContactSupportViewController: UIViewController, ContactSupportViewDelegate
     }
     
     private func showErrorAlert(error: Error) {
-        let alertView = AlertView()
+        let alertView = AlertView(config: config.viewConfig)
         alertView.configure(
             type: .error,
-            title: "Error",
-            message: "Failed to send your message. Please try again later.\n\(error.localizedDescription)",
+            title: config.viewConfig.errorTitle,
+            message: config.viewConfig.errorMessage + error.localizedDescription,
             onDismiss: nil
         )
         alertView.show(in: self.view)

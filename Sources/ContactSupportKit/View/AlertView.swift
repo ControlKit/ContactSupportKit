@@ -15,70 +15,65 @@ public enum AlertType {
 public class AlertView: UIView {
     
     // MARK: - Properties
-    private let containerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 16
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 0.2
-        view.layer.shadowOffset = CGSize(width: 0, height: 4)
-        view.layer.shadowRadius = 12
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    let config: ContactSupportViewConfig
     
-    private let iconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let messageLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.textColor = .gray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let dismissButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("OK", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        button.layer.cornerRadius = 8
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private let containerView = UIView()
+    private let iconImageView = UIImageView()
+    private let titleLabel = UILabel()
+    private let messageLabel = UILabel()
+    private let dismissButton = UIButton(type: .system)
     
     private var dismissAction: (() -> Void)?
     private var autoDismissTimer: Timer?
     
     // MARK: - Initialization
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    public init(config: ContactSupportViewConfig) {
+        self.config = config
+        super.init(frame: .zero)
         setupView()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupView()
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Setup
     private func setupView() {
-        backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        // Background overlay
+        backgroundColor = config.alertOverlayBackgroundColor
+        
+        // Configure container view
+        containerView.backgroundColor = config.alertContainerBackgroundColor
+        containerView.layer.cornerRadius = config.alertContainerCornerRadius
+        containerView.layer.shadowColor = config.alertContainerShadowColor.cgColor
+        containerView.layer.shadowOpacity = config.alertContainerShadowOpacity
+        containerView.layer.shadowOffset = config.alertContainerShadowOffset
+        containerView.layer.shadowRadius = config.alertContainerShadowRadius
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Configure icon
+        iconImageView.contentMode = .scaleAspectFit
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Configure title label
+        titleLabel.font = config.alertTitleFont
+        titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Configure message label
+        messageLabel.font = config.alertMessageFont
+        messageLabel.textAlignment = .center
+        messageLabel.numberOfLines = 0
+        messageLabel.textColor = config.alertMessageColor
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Configure dismiss button
+        dismissButton.setTitle(config.alertButtonTitle, for: .normal)
+        dismissButton.titleLabel?.font = config.alertButtonFont
+        dismissButton.layer.cornerRadius = config.alertButtonCornerRadius
+        dismissButton.setTitleColor(config.alertButtonTitleColor, for: .normal)
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(containerView)
         containerView.addSubview(iconImageView)
@@ -90,30 +85,30 @@ public class AlertView: UIView {
             // Container view
             containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            containerView.widthAnchor.constraint(equalToConstant: 300),
+            containerView.widthAnchor.constraint(equalToConstant: config.alertContainerWidth),
             
             // Icon
-            iconImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 32),
+            iconImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: config.alertIconTopMargin),
             iconImageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            iconImageView.widthAnchor.constraint(equalToConstant: 60),
-            iconImageView.heightAnchor.constraint(equalToConstant: 60),
+            iconImageView.widthAnchor.constraint(equalToConstant: config.alertIconSize),
+            iconImageView.heightAnchor.constraint(equalToConstant: config.alertIconSize),
             
             // Title
-            titleLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
+            titleLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: config.alertTitleTopMargin),
+            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: config.alertHorizontalPadding),
+            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -config.alertHorizontalPadding),
             
             // Message
-            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
-            messageLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            messageLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
+            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: config.alertMessageTopMargin),
+            messageLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: config.alertHorizontalPadding),
+            messageLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -config.alertHorizontalPadding),
             
             // Dismiss button
-            dismissButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 24),
-            dismissButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            dismissButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
-            dismissButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -24),
-            dismissButton.heightAnchor.constraint(equalToConstant: 48)
+            dismissButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: config.alertButtonTopMargin),
+            dismissButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: config.alertHorizontalPadding),
+            dismissButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -config.alertHorizontalPadding),
+            dismissButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -config.alertButtonBottomMargin),
+            dismissButton.heightAnchor.constraint(equalToConstant: config.alertButtonHeight)
         ])
         
         dismissButton.addTarget(self, action: #selector(dismissTapped), for: .touchUpInside)
@@ -147,25 +142,25 @@ public class AlertView: UIView {
     }
     
     private func configureSuccessStyle() {
-        titleLabel.textColor = .systemGreen
-        dismissButton.backgroundColor = .systemGreen
-        dismissButton.setTitleColor(.white, for: .normal)
+        titleLabel.textColor = config.alertSuccessTitleColor
+        dismissButton.backgroundColor = config.alertSuccessButtonBackgroundColor
+        dismissButton.setTitleColor(config.alertButtonTitleColor, for: .normal)
         
         // Create success checkmark icon
-        let config = UIImage.SymbolConfiguration(pointSize: 60, weight: .light)
-        iconImageView.image = UIImage(systemName: "checkmark.circle.fill", withConfiguration: config)
-        iconImageView.tintColor = .systemGreen
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: config.alertIconSize, weight: .light)
+        iconImageView.image = UIImage(systemName: config.alertSuccessIconName, withConfiguration: imageConfig)
+        iconImageView.tintColor = config.alertSuccessIconColor
     }
     
     private func configureErrorStyle() {
-        titleLabel.textColor = .systemRed
-        dismissButton.backgroundColor = .systemRed
-        dismissButton.setTitleColor(.white, for: .normal)
+        titleLabel.textColor = config.alertErrorTitleColor
+        dismissButton.backgroundColor = config.alertErrorButtonBackgroundColor
+        dismissButton.setTitleColor(config.alertButtonTitleColor, for: .normal)
         
         // Create error icon
-        let config = UIImage.SymbolConfiguration(pointSize: 60, weight: .light)
-        iconImageView.image = UIImage(systemName: "xmark.circle.fill", withConfiguration: config)
-        iconImageView.tintColor = .systemRed
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: config.alertIconSize, weight: .light)
+        iconImageView.image = UIImage(systemName: config.alertErrorIconName, withConfiguration: imageConfig)
+        iconImageView.tintColor = config.alertErrorIconColor
     }
     
     // MARK: - Actions
@@ -177,7 +172,7 @@ public class AlertView: UIView {
         autoDismissTimer?.invalidate()
         autoDismissTimer = nil
         
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: config.alertFadeAnimationDuration, animations: {
             self.alpha = 0
         }) { _ in
             self.removeFromSuperview()
@@ -192,17 +187,17 @@ public class AlertView: UIView {
         view.addSubview(self)
         
         // Animate in
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: config.alertFadeAnimationDuration) {
             self.alpha = 1
         }
         
         // Scale animation for container
-        containerView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        containerView.transform = CGAffineTransform(scaleX: config.alertInitialScale, y: config.alertInitialScale)
         UIView.animate(
-            withDuration: 0.5,
+            withDuration: config.alertScaleAnimationDuration,
             delay: 0,
-            usingSpringWithDamping: 0.7,
-            initialSpringVelocity: 0.5,
+            usingSpringWithDamping: config.alertScaleAnimationDamping,
+            initialSpringVelocity: config.alertScaleAnimationVelocity,
             options: .curveEaseOut,
             animations: {
                 self.containerView.transform = .identity
