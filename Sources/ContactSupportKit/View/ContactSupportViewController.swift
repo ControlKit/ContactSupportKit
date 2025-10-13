@@ -32,6 +32,7 @@ class ContactSupportViewController: UIViewController, ContactSupportViewDelegate
         contactSupportView.delegate = self
         view.addSubview(contactSupportView)
         contactSupportView.fixInView(view)
+        viewModel.setAction(.view)
     }
     
     func send(request: ContactSupportViewRequest) {
