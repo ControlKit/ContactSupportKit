@@ -102,8 +102,8 @@ public class ContactSupportViewConfig {
     // Icon
     public var alertIconSize: CGFloat = 60
     public var alertIconTopMargin: CGFloat = 32
-    public var alertSuccessIconName: String = "checkmark.circle.fill"
-    public var alertErrorIconName: String = "xmark.circle.fill"
+    public var alertSuccessIconName: String = "checkmark-circle-fill"
+    public var alertErrorIconName: String = "xmark-circle-fill"
     public var alertSuccessIconColor: UIColor = .systemGreen
     public var alertErrorIconColor: UIColor = .systemRed
     

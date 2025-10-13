@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ControlKitBase
 
 public enum AlertType {
     case success
@@ -147,9 +148,8 @@ public class AlertView: UIView {
         dismissButton.setTitleColor(config.alertButtonTitleColor, for: .normal)
         
         // Create success checkmark icon
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: config.alertIconSize, weight: .light)
-        iconImageView.image = UIImage(systemName: config.alertSuccessIconName, withConfiguration: imageConfig)
-        iconImageView.tintColor = config.alertSuccessIconColor
+        let imageConfig = ImageHelper.image(config.alertSuccessIconName)?.imageWithColor(color: config.alertSuccessIconColor)
+        iconImageView.image = imageConfig
     }
     
     private func configureErrorStyle() {
@@ -158,9 +158,8 @@ public class AlertView: UIView {
         dismissButton.setTitleColor(config.alertButtonTitleColor, for: .normal)
         
         // Create error icon
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: config.alertIconSize, weight: .light)
-        iconImageView.image = UIImage(systemName: config.alertErrorIconName, withConfiguration: imageConfig)
-        iconImageView.tintColor = config.alertErrorIconColor
+        let imageConfig = ImageHelper.image(config.alertErrorIconName)?.imageWithColor(color: config.alertErrorIconColor)
+        iconImageView.image = imageConfig
     }
     
     // MARK: - Actions
