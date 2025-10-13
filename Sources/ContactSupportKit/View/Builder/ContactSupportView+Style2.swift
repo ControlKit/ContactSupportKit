@@ -536,5 +536,10 @@ public class ContactSupportViewConfig_Style2: ContactSupportViewConfig {
         sendButtonRadius = 20.0
         
         containerViewBackColor = .clear
+        
+        alertSuccessIconColor = UIColor(r: 163, g: 163, b: 163)
+        alertErrorIconColor = .systemRed
+        alertSuccessButtonBackgroundColor = UIColor(r: 163, g: 163, b: 163)
+        alertSuccessTitleColor = UIColor(r: 163, g: 163, b: 163)
     }
 }
