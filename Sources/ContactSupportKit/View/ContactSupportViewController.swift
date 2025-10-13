@@ -36,13 +36,43 @@ class ContactSupportViewController: UIViewController, ContactSupportViewDelegate
     
     func send(request: ContactSupportViewRequest) {
         Task {
-            let _ = try await viewModel.sendContactSupport(viewRequest: request)
-            DispatchQueue.main.async {
-                self.dismiss(animated: true) {
-                    self.delegate?.success()
+            do {
+                let _ = try await viewModel.sendContactSupport(viewRequest: request)
+                DispatchQueue.main.async {
+                    self.showSuccessAlert()
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.showErrorAlert(error: error)
                 }
             }
         }
+    }
+    
+    private func showSuccessAlert() {
+        let alertView = AlertView()
+        alertView.configure(
+            type: .success,
+            title: "Success!",
+            message: "Your message has been sent successfully. We'll get back to you soon.",
+            onDismiss: { [weak self] in
+                self?.dismiss(animated: true) {
+                    self?.delegate?.success()
+                }
+            }
+        )
+        alertView.show(in: self.view)
+    }
+    
+    private func showErrorAlert(error: Error) {
+        let alertView = AlertView()
+        alertView.configure(
+            type: .error,
+            title: "Error",
+            message: "Failed to send your message. Please try again later.\n\(error.localizedDescription)",
+            onDismiss: nil
+        )
+        alertView.show(in: self.view)
     }
     
     func cancel() {
